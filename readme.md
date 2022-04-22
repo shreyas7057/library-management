@@ -17,3 +17,17 @@ For Book and Author we created functions for CRUD operations.
 To store data we used MySQL as database. MySQL is Relational Database so it stored all data in row and column format. 
 
 Also, Django comes with sqlite3 as default database but we changed it to MySQL. We used mysqlclient library to connect MySQL to Django. 
+
+
+Urls:
+    path('admin/', admin.site.urls),
+    
+    # urls for frontend used in HTML and CSS
+    path('accounts/',include('accounts.urls')),
+    path('',include('books.urls')),
+
+    # default api ui provided by DRF
+    path('api/',include('books.api.urls')),
+
+    # API with swagger library
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
