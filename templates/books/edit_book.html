@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Edit Books{% endblock title %}
+
+
+{% block content %}
+
+<div class="row border border-dark">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+        <h3 class="text-center">Edit Book Details</h3>
+        {% include 'includes/messages.html' %}
+        <form method="POST" action="{% url 'update_book' %}">
+            {% csrf_token %}
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="staticEmail" name="name" value="{{ book.name }}">
+                    <input type="hidden" class="form-control" id="staticEmail" name="book_id" value="{{ book.id }}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">ISBN no.</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="staticEmail" name="isbn" value="{{ book.isbn }}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Author</label>
+                <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="author_id">
+                        <option>Select Author</option>
+                        {% for i in author %}
+                        <option value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="staticEmail" name="category" value="{{ book.category }}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Stock</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="staticEmail" name="stock" value="{{ book.stock }}">
+                </div>
+            </div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-outline-dark mb-4" value="Edit Book">
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-3"></div>
+
+</div>
+
+{% endblock content %}

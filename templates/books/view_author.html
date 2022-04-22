@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}View Author{% endblock title %}
+
+
+{% block content %}
+
+{% include 'includes/messages.html' %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Author Contact</th>
+            <th scope="col">Author Country</th>
+            <th scope="col">Update</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in authors %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ i.name }}</td>
+            <td>{{ i.phone }}</td>
+            <td>{{ i.country }}</td>
+            <td><a href="{% url 'edit_author' i.id %}">Edit</a>/<a href="{% url 'delete_author' i.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+
+{% endblock content %}
